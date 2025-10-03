@@ -113,5 +113,11 @@ return {
       -- Only include plugin cheatsheets for installed plugins
       include_only_installed_plugins = true,
     },
-  }
+  },
+
+  { "folke/trouble.nvim", cmd = "Trouble", opts = {} },
+  { "folke/todo-comments.nvim", event = "BufReadPost", opts = {} },
+  { "ThePrimeagen/harpoon", branch = "harpoon2", dependencies = { "nvim-lua/plenary.nvim" }, opts = {} },
+  { "nvim-pack/nvim-spectre", cmd = "Spectre" },
+  { "stevearc/conform.nvim", event = "BufWritePre", opts = { format_on_save = { timeout_ms = 500, lsp_fallback = true } } },
 }
