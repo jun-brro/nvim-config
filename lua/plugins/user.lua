@@ -95,5 +95,23 @@ return {
         use_libuv_file_watcher = true,
       },
     },
+  },
+
+  -- Cheatsheet plugin (Telescope-powered)
+  {
+    "sudormrfbin/cheatsheet.nvim",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      "nvim-lua/popup.nvim",
+      "nvim-lua/plenary.nvim",
+    },
+    cmd = { "Cheatsheet", "CheatsheetEdit" },
+    keys = {
+      { "<Leader>?", "<cmd>Cheatsheet<cr>", desc = "Open Cheatsheet" },
+    },
+    opts = {
+      -- Only include plugin cheatsheets for installed plugins
+      include_only_installed_plugins = true,
+    },
   }
 }
