@@ -57,6 +57,76 @@ return {
       n = {
         -- second key is the lefthand side of the map
 
+        -- Telescope file search (excludes .out, .err)
+        ["<Leader>ff"] = {
+          function()
+            require("telescope.builtin").find_files({
+              file_ignore_patterns = {
+                "__pycache__/", "%.pyc$", "node_modules/", "%.git/", "%.DS_Store",
+                "%.out$", "%.err$",
+              },
+            })
+          end,
+          desc = "Find files",
+        },
+        -- Telescope file search (includes .out, .err)
+        ["<Leader>fa"] = {
+          function()
+            require("telescope.builtin").find_files({
+              file_ignore_patterns = {
+                "__pycache__/", "%.pyc$", "node_modules/", "%.git/", "%.DS_Store",
+              },
+            })
+          end,
+          desc = "Find all files (incl. .out/.err)",
+        },
+
+        -- Open current file with system app
+        ["<Leader>o"] = {
+          function()
+            local file = vim.fn.expand("%:p")
+            if file ~= "" then
+              vim.fn.system({ "xdg-open", file })
+              vim.notify("Opened: " .. vim.fn.expand("%:t"), vim.log.levels.INFO)
+            end
+          end,
+          desc = "Open with system app",
+        },
+
+        -- Find media files and open with system app
+        ["<Leader>fm"] = {
+          function()
+            require("telescope.builtin").find_files({
+              prompt_title = "Media Files",
+              find_command = {
+                "find", ".", "-type", "f",
+                "(", "-name", "*.png", "-o", "-name", "*.jpg", "-o", "-name", "*.jpeg",
+                "-o", "-name", "*.gif", "-o", "-name", "*.mp4", "-o", "-name", "*.webm",
+                "-o", "-name", "*.mp3", "-o", "-name", "*.wav", ")",
+                "-not", "-path", "*/.git/*",
+              },
+              attach_mappings = function(_, map)
+                local actions = require("telescope.actions")
+                local action_state = require("telescope.actions.state")
+                map("i", "<CR>", function(prompt_bufnr)
+                  local entry = action_state.get_selected_entry()
+                  actions.close(prompt_bufnr)
+                  vim.fn.system({ "xdg-open", entry.path })
+                  vim.notify("Opened: " .. entry.value, vim.log.levels.INFO)
+                end)
+                map("n", "<CR>", function(prompt_bufnr)
+                  local entry = action_state.get_selected_entry()
+                  actions.close(prompt_bufnr)
+                  vim.fn.system({ "xdg-open", entry.path })
+                  vim.notify("Opened: " .. entry.value, vim.log.levels.INFO)
+                end)
+                return true
+              end,
+            })
+          end,
+          desc = "Find media files",
+        },
+
         -- navigate buffer tabs
         ["]b"] = { function() require("astrocore.buffer").nav(vim.v.count1) end, desc = "Next buffer" },
         ["[b"] = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },

@@ -115,6 +115,36 @@ return {
     },
   },
 
+  -- Telescope configuration
+  {
+    "nvim-telescope/telescope.nvim",
+    opts = {
+      defaults = {
+        file_ignore_patterns = {
+          "__pycache__/",
+          "%.pyc$",
+          "node_modules/",
+          "%.git/",
+          "%.DS_Store",
+        },
+      },
+    },
+  },
+
+  -- Image viewing in Neovim (requires Kitty, WezTerm, or iTerm2)
+  {
+    "3rd/image.nvim",
+    event = "VeryLazy",
+    opts = {
+      backend = "kitty", -- or "ueberzug" for X11
+      max_width = 100,
+      max_height = 30,
+      integrations = {
+        markdown = { enabled = true },
+      },
+    },
+  },
+
   { "folke/trouble.nvim", cmd = "Trouble", opts = {} },
   { "folke/todo-comments.nvim", event = "BufReadPost", opts = {} },
   { "ThePrimeagen/harpoon", branch = "harpoon2", dependencies = { "nvim-lua/plenary.nvim" }, opts = {} },
