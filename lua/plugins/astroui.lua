@@ -10,6 +10,10 @@ return {
   opts = {
     -- change colorscheme
     colorscheme = "astrodark",
+    -- drop "treesitter" fold method: nvim 0.11.5 vim.treesitter.foldexpr async
+    -- callback crashes (_fold.lua:436 "attempt to index a nil value"). lsp+indent
+    -- still provide folding without the buggy async treesitter path.
+    folding = { methods = { "lsp", "indent" } },
     -- AstroUI allows you to easily modify highlight groups easily for any and all colorschemes
     highlights = {
       init = { -- this table overrides highlights in all themes
