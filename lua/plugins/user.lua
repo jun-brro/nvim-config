@@ -94,6 +94,16 @@ return {
         follow_current_file = { enabled = true },
         use_libuv_file_watcher = true,
       },
+      window = {
+        mappings = {
+          ["Y"] = function(state)
+            local node = state.tree:get_node()
+            local path = node:get_id()
+            vim.fn.setreg("+", path)
+            vim.notify("Copied: " .. path)
+          end,
+        },
+      },
     },
   },
 

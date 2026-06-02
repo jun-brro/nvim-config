@@ -127,6 +127,13 @@ return {
           desc = "Find media files",
         },
 
+        -- Numbered toggleterms (:<N>ToggleTerm)
+        ["<Leader>t1"] = { "<Cmd>1ToggleTerm<CR>", desc = "Toggle terminal 1" },
+        ["<Leader>t2"] = { "<Cmd>2ToggleTerm<CR>", desc = "Toggle terminal 2" },
+        ["<Leader>t3"] = { "<Cmd>3ToggleTerm<CR>", desc = "Toggle terminal 3" },
+        ["<Leader>t4"] = { "<Cmd>4ToggleTerm<CR>", desc = "Toggle terminal 4" },
+        ["<Leader>ts"] = { "<Cmd>TermSelect<CR>", desc = "Select terminal" },
+
         -- navigate buffer tabs
         ["]b"] = { function() require("astrocore.buffer").nav(vim.v.count1) end, desc = "Next buffer" },
         ["[b"] = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
