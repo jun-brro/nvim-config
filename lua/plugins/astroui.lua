@@ -16,7 +16,12 @@ return {
         -- Normal = { bg = "#000000" },
       },
       astrodark = { -- a table of overrides/changes when applying the astrotheme theme
-        -- Normal = { bg = "#000000" },
+        Normal = { bg = "#000000" },
+        NormalNC = { bg = "#000000" },
+        EndOfBuffer = { bg = "#000000" },
+        SignColumn = { bg = "#000000" },
+        LineNr = { bg = "#000000" },
+        CursorLineNr = { bg = "#000000" },
       },
     },
     -- Icons can be configured throughout the interface

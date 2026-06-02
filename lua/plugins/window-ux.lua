@@ -18,16 +18,16 @@ return {
     event = { "WinNew" },
     config = function()
       require("colorful-winsep").setup({
-        highlight = { fg = "#7aa2f7" },
-        interval = 30,
-        no_exec_files = {
+        -- v2 API: highlight is nil|string|function (table no longer supported)
+        highlight = "#7aa2f7",
+        border = { "─", "│", "┌", "┐", "└", "┘" },
+        excluded_ft = {
           "packer",
           "TelescopePrompt",
           "mason",
           "CompetiTest",
           "neo-tree",
         },
-        symbols = { "─", "│", "┌", "┐", "└", "┘" },
       })
     end,
   },
