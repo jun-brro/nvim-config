@@ -141,9 +141,13 @@ return {
     },
   },
 
-  -- Image viewing in Neovim (requires Kitty, WezTerm, or iTerm2)
+  -- Image viewing in Neovim (requires Kitty/WezTerm/iTerm2 + ImageMagick CLI)
+  -- Disabled: ImageMagick ('magick'/'convert') not installed on this host, threw
+  -- "ImageMagick CLI tools not found" on every render. Set enabled=true after
+  -- installing imagemagick if image preview is wanted.
   {
     "3rd/image.nvim",
+    enabled = false,
     event = "VeryLazy",
     opts = {
       backend = "kitty", -- or "ueberzug" for X11
